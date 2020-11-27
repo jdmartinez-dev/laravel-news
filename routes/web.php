@@ -16,3 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('client/{name?}', function($name = 'Jose') {
+    return "Hola, $name conocemos: <a href='".route('about-us')."'>About Us</a>";
+});
+
+Route::get('sobre-nosotros', function() {
+    return "<h1>All informactions, about us.</h1>";
+})->name('about-us');
+
+
+Route::post('home', function($id) {
+    return view("home");
+})->name('home');
