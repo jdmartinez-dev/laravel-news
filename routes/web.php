@@ -18,3 +18,6 @@ Route::get('/', function () {
 });
 
 Route::resource('dashboard/post', dashboard\PostController::class);
+Route::get('jose', function() {
+    echo "Hello, World!!";
+});

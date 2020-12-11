@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title', 500)->nullable();
-            $table->string('url_clear', 500)->nullable();
+            $table->string('url_clean', 500)->nullable();
             $table->text('content')->nullable();
             $table->enum('posted', ['yes', 'not'])->default('not');
             $table->unsignedBigInteger('category_id')->nullable();

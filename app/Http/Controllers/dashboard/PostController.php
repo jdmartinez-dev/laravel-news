@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\storePostPost;
 
 class PostController extends Controller
 {
@@ -33,9 +35,21 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(storePostPost $request)
     {
-        return "Hello World!!";
+        // $request->validate([
+        //     'title' => 'required|min:5|max:500',
+        //     // 'url_clean' => 'required|min:5|max:500',
+        //     'content' => 'required|min:5'
+        // ]);
+
+        // $title = $request->input('title', '');
+        // $url_clear = $request->input('url_clean', '');
+        // $content = $request->input('content', '');
+
+        Post::create($request->validated());
+
+        return response()->json($request->validated());
     }
 
     /**
