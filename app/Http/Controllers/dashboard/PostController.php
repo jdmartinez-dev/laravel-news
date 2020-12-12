@@ -15,8 +15,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        echo "Hola";
+    {   
+        $posts = Post::get();
+
+        return view('dashboard.post.index', ['posts' => $posts]);
     }
 
     /**
@@ -37,19 +39,9 @@ class PostController extends Controller
      */
     public function store(storePostPost $request)
     {
-        // $request->validate([
-        //     'title' => 'required|min:5|max:500',
-        //     // 'url_clean' => 'required|min:5|max:500',
-        //     'content' => 'required|min:5'
-        // ]);
-
-        // $title = $request->input('title', '');
-        // $url_clear = $request->input('url_clean', '');
-        // $content = $request->input('content', '');
-
         Post::create($request->validated());
 
-        return response()->json($request->validated());
+        return back()->with('status', 'Save sucessfully!!');
     }
 
     /**

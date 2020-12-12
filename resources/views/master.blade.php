@@ -11,7 +11,11 @@
    </head>
    
    <body>
+      @include('dashboard.partials.nav-header-main')
+
       <div class="container pt-4">
+         @include('dashboard.partials.session-flash-status')
+         
          @yield('content')
       </div>
    </body>
