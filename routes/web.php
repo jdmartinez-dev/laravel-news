@@ -18,6 +18,4 @@ Route::get('/', function () {
 })->name('home');
 
 Route::resource('dashboard/post', dashboard\PostController::class);
-Route::get('jose', function() {
-    echo "Hello, World!!";
-});
+Route::resource('dashboard/category', dashboard\CategoryController::class);

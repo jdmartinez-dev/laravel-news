@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\dashboard;
 
-use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Http\Requests\storeCategoryPost;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\storePostPost;
+use App\Models\Category;
+use Illuminate\Http\Request;
 
-class PostController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $posts = Post::paginate(3);
+    {
+        $categories = Category::paginate(3);
 
-        return view('dashboard.post.index', ['posts' => $posts]);
+        return view('dashboard.category.index', ['categories' => $categories]);
     }
 
     /**
@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('dashboard.post.create', ['post' => new Post()]);
+        return view('dashboard.category.create', ['category' => new Category()]);
     }
 
     /**
@@ -37,9 +37,9 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(storePostPost $request)
+    public function store(storeCategoryPost $request)
     {
-        Post::create($request->validated());
+        Category::create($request->validated());
 
         return back()->with('status', 'Save successfully!!');
     }
@@ -47,35 +47,35 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Category $category)
     {
-        return view('dashboard.post.show')->with(['post' => $post]);
+        return view('dashboard.category.show')->with(['category' => $category]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Category $category)
     {
-        return view('dashboard.post.edit', ['post' => $post]);
+        return view('dashboard.category.edit', ['category' => $category]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(storePostPost $request, Post $post)
+    public function update(storeCategoryPost $request, Category $category)
     {
-        $post->update($request->validated());
+        $category->update($request->validated());
 
         return back()->with('status', 'Update successfully!!');
     }
@@ -83,12 +83,12 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(POST $post)
+    public function destroy(Category $category)
     {
-        $post->delete();
+        $category->delete();
 
         return back()->with('status', 'Delete successfully!!');
     }
